@@ -19,18 +19,34 @@ import lombok.Setter;
  */
 public class Process {
 
-    private int id;
-    private int arrivalTime;
-    private int burstTime;
-    private int priority;
+  private int id;
+  private int arrivalTime;
+  private int progressTime;
+  private int burstTime;
+  private int priority;
 
-    @Override
-    public String toString() {
-        return "Process{" +
-            "id=" + id +
-            ", arrivalTime=" + arrivalTime +
-            ", burstTime=" + burstTime +
-            ", priority=" + priority +
-            '}';
+  @Override
+  public String toString() {
+    return "Process{" +
+        "id=" + id +
+        ", arrivalTime=" + arrivalTime +
+        ", burstTime=" + burstTime +
+        ", priority=" + priority +
+        '}';
+  }
+
+  public int run() {
+    int progressTime = 0;
+    while (progressTime != burstTime) {
+      try {
+        Thread.sleep(1);
+        progressTime++;
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+        System.out.println(
+            "Process " + id + " was interrupted. Progress: " + progressTime + "/" + burstTime);
+      }
     }
+    return progressTime;
+  }
 }
