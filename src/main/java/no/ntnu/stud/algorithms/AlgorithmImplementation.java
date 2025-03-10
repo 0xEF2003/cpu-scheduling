@@ -1,7 +1,11 @@
 package no.ntnu.stud.algorithms;
 
-public interface AlgorithmImplementation {
-  public void sortProcesses();
+import java.util.List;
 
-  public void run();
+import no.ntnu.stud.entity.Process;
+
+public abstract class AlgorithmImplementation {
+  public abstract void setProcesses(List<Process> processes);
+  public abstract void sortProcesses();
+  public abstract void run();
 }

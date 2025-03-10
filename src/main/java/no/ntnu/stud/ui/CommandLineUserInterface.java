@@ -5,6 +5,15 @@ import java.util.Scanner;
 
 public class CommandLineUserInterface {
 
+  public void greet() {
+    System.out.println("Insert ASCII Art Here");
+  }
+
+
+  public void goodbye() {
+    System.out.println("Have a nice day!");
+  }
+
   /**
    * Prompt any single line input.
    *

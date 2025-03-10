@@ -48,7 +48,7 @@
                 <archive>
                     <manifest>
                     <addClasspath>true</addClasspath>
-                    <mainClass>no.ntnu.stud.App</mainClass>
+                    <mainClass>no.ntnu.stud.Main</mainClass>
                     </manifest>
                 </archive>
                 </configuration>

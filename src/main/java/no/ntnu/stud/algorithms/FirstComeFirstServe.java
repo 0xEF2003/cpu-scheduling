@@ -2,12 +2,17 @@ package no.ntnu.stud.algorithms;
 
 import java.util.Comparator;
 import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import no.ntnu.stud.entity.Process;
 
-public class FirstComeFirstServe implements AlgorithmImplementation {
+@NoArgsConstructor
+@AllArgsConstructor
+public class FirstComeFirstServe extends AlgorithmImplementation {
   List<Process> processes;
 
-  public FirstComeFirstServe(List<Process> processes) {
+  public void setProcesses(List<Process> processes) {
     this.processes = processes;
   }
 
