@@ -3,11 +3,11 @@ package no.ntnu.stud.algorithms;
 import java.util.List;
 import no.ntnu.stud.entity.Process;
 
-public class PreEmptivePrioritySchedulingAlgorithmImplementation
+public class PreEmptivePriorityScheduling
     implements AlgorithmImplementation {
   private List<Process> processes;
 
-  public PreEmptivePrioritySchedulingAlgorithmImplementation(List<Process> processes) {
+  public PreEmptivePriorityScheduling(List<Process> processes) {
     this.processes = processes;
   }
 
