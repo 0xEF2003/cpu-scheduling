@@ -10,24 +10,30 @@ import no.ntnu.stud.entity.Process;
 @AllArgsConstructor
 public class RoundRobin extends AlgorithmImplementation {
   List<Process> processes;
+  int quantum;
 
+  public RoundRobin(int quantum) {
+    this.quantum = quantum;
+  }
 
   public void setProcesses(List<Process> processes) {
     this.processes = processes;
   }
 
   public void sortProcesses() {
-    processes.sort(Comparator.comparingInt(Process::getBurstTime));
+    processes.sort(Comparator.comparingInt(Process::getArrivalTime));
   }
 
   public void run() {
     int time = 0;
     while (!processes.isEmpty()) {
       sortProcesses();
-      Process currentProcess = processes.getFirst();
-      time += currentProcess.burst();
-      System.out.println("Process " + currentProcess.getId() + " finished at " + time);
-      processes.removeFirst();
+      for (int i = 0; i < processes.size(); i++) {
+        Process currentProcess = processes.get(i);
+        time += currentProcess.burst(this.quantum);
+        System.out.println("Process " + currentProcess.getId() + " finished at " + time);
+        processes.remove(i);
+      }
     }
   }
 }
