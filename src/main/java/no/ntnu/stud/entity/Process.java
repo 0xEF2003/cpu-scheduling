@@ -6,7 +6,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 /**
  * Process entity
  *
@@ -25,18 +24,15 @@ public class Process {
   private int burstTime;
   private int priority;
 
-  @Override
-  public String toString() {
-    return "Process{" +
-        "id=" + id +
-        ", arrivalTime=" + arrivalTime +
-        ", burstTime=" + burstTime +
-        ", priority=" + priority +
-        '}';
+  public Process(int id, int arrivalTime, int burstTime, int priority) {
+    this.id = id;
+    this.arrivalTime = arrivalTime;
+    this.progressTime = 0;
+    this.burstTime = burstTime;
+    this.priority = priority;
   }
 
   public int run() {
-    int progressTime = 0;
     while (progressTime != burstTime) {
       try {
         Thread.sleep(1);
