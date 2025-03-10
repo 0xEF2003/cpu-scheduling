@@ -3,7 +3,7 @@ package no.ntnu.stud.algorithms;
 import java.util.List;
 import no.ntnu.stud.entity.Process;
 
-public class PreEmptivePrioritySchedulingAlgorithm {
+public class PreEmptivePrioritySchedulingAlgorithm implements Algorithm {
   private List<Process> processes;
 
   public PreEmptivePrioritySchedulingAlgorithm(List<Process> processes) {
