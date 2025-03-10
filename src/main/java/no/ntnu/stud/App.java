@@ -1,6 +1,6 @@
 package no.ntnu.stud;
 
-import no.ntnu.stud.algorithms.AlgorithmImplementationFactory;
+import no.ntnu.stud.factory.AlgorithmImplementationFactory;
 import no.ntnu.stud.ui.CommandLineUserInterface;
 import no.ntnu.stud.views.AlgorithmView;
 import no.ntnu.stud.views.ProcessView;
@@ -68,8 +68,8 @@ public class App {
       int i = 0;
       while (i < numberOfProcesses) {
         Process process = processes.get(i);
-        ProcessEventPublisher publisher = eventPublishers.get(i);
-        ProcessView view = new ProcessView(i, process.getBurstTime());
+        ProcessEventPublisher publisher = eventPublishers.get(process.getId());
+        ProcessView view = new ProcessView(process.getId(), process.getBurstTime());
         process.setEventPublisher(publisher);
         publisher.subscribe(ProcessEventEnum.PROGRESS_TIME_UPDATED, view);
         processViews.add(view);
