@@ -7,6 +7,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+/**
+ * Process entity
+ *
+ * @param id          process id
+ * @param arrivalTime process arrival time (In ms)
+ * @param burstTime   process burst time (In ms)
+ * @param priority    process priority (Higher number means higher priority)
+ *
+ * @return Process object
+ */
 public class Process {
 
     private int id;

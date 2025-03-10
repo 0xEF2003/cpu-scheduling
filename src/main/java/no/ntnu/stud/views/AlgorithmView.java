@@ -18,4 +18,8 @@ public class AlgorithmView implements Presentable {
             default -> { throw new StringPresentException("Failed to present algorithm type: not known"); }
         }
     }
+
+    public Algorithm getAlgorithm() {
+        return this.algorithm;
+    }
 }

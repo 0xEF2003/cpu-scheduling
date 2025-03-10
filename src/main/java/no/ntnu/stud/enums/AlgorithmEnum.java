@@ -1,6 +1,6 @@
 package no.ntnu.stud.enums;
 
-public enum Algorithm {
+public enum AlgorithmEnum {
     FIRST_COME_FIRST_SERVE,
     PRIORITY;
 }
