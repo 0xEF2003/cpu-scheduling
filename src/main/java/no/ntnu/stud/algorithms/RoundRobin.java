@@ -31,8 +31,8 @@ public class RoundRobin extends AlgorithmImplementation {
         Process currentProcess = processes.get(i);
         time += currentProcess.burst(this.quantum);
         System.out.println("Process " + currentProcess.getId() + " finished at " + time);
-        processes.remove(i);
       }
+      processes.removeIf(p -> p.getProgressTime() >= p.getBurstTime());
     }
   }
 }
