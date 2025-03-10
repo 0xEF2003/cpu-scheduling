@@ -1,8 +1,6 @@
 package no.ntnu.stud.views;
 
 import me.tongfei.progressbar.ProgressBar;
-import me.tongfei.progressbar.ProgressBarBuilder;
-import me.tongfei.progressbar.ProgressBarStyle;
 import no.ntnu.stud.entity.Process;
 import no.ntnu.stud.enums.ProcessEventEnum;
 import no.ntnu.stud.listener.ProcessEventListener;
