@@ -1,6 +1,6 @@
 package no.ntnu.stud.algorithms;
 
-public interface Algorithm {
+public interface AlgorithmImplementation {
   public void sortProcesses();
 
   public void run();
