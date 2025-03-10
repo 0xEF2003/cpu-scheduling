@@ -3,10 +3,11 @@ package no.ntnu.stud.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import no.ntnu.stud.enums.ProcessEventEnum;
+import no.ntnu.stud.publisher.ProcessEventPublisher;
 
 @Getter
 @Setter
-@AllArgsConstructor
 /**
  * Process entity
  *
@@ -24,13 +25,28 @@ public class Process {
   private int progressTime;
   private int burstTime;
   private int priority;
+  private ProcessEventPublisher publisher;
 
-  public int run() {
-    int progressTime = 0;
+  public Process(int id, int arrivalTime, int burstTime, int priority) {
+    this.id = id;
+    this.arrivalTime = arrivalTime;
+    this.progressTime = 0;
+    this.burstTime = burstTime;
+    this.priority = priority;
+  }
+
+  public void setEventPublisher(ProcessEventPublisher publisher) {
+    this.publisher = publisher;
+  }
+
+  public int burst() {
     while (progressTime != burstTime) {
       try {
         Thread.sleep(1);
         progressTime++;
+        if (publisher != null) {
+            publisher.notify(ProcessEventEnum.PROGRESS_TIME_UPDATED, this);
+        }
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
         System.out.println(

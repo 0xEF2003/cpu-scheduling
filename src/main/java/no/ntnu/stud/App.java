@@ -10,10 +10,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import no.ntnu.stud.algorithms.AlgorithmImplementation;
-import no.ntnu.stud.algorithms.AlgorithmImplementationFactory;
+import no.ntnu.stud.factory.AlgorithmImplementationFactory;
+import no.ntnu.stud.factory.ProcessEventPublisherFactory;
 import no.ntnu.stud.entity.Process;
 import no.ntnu.stud.enums.AlgorithmEnum;
+import no.ntnu.stud.enums.ProcessEventEnum;
 import no.ntnu.stud.factory.ProcessFactory;
+import no.ntnu.stud.publisher.ProcessEventPublisher;
+import no.ntnu.stud.views.ProcessView;
 
 /**
  * Hello world!
@@ -48,10 +52,24 @@ public class App {
             AlgorithmView userSelection = cli.promptIndexedOptions("Please select algorithm", algorithmViews);
             AlgorithmImplementation algorithm = AlgorithmImplementationFactory.create(userSelection.getAlgorithm());
 
-            // User enters how many processes to spawn
+            // User enters how many processes to spawn and max burst time
             int numberOfProcesses = cli.promptInt("Please enter amount of processes to schedule");
             int maxBurstTime = cli.promptInt("Please enter max burst time");
+
+            // Prepare simulation
             List<Process> processes = ProcessFactory.createN(numberOfProcesses, maxBurstTime);
+            List<ProcessEventPublisher> eventPublishers = ProcessEventPublisherFactory.createN(numberOfProcesses);
+            List<ProcessView> processViews = new ArrayList<ProcessView>();
+
+            int i = 0;
+            while (i < numberOfProcesses) {
+                Process process = processes.get(i);
+                ProcessEventPublisher publisher = eventPublishers.get(i);
+                ProcessView view = new ProcessView(i, process.getBurstTime());
+                process.setEventPublisher(publisher);
+                publisher.subscribe(ProcessEventEnum.PROGRESS_TIME_UPDATED, view);
+                processViews.add(view);
+            }
 
             // Run simulation
             algorithm.setProcesses(processes);
