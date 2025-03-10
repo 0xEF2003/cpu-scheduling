@@ -90,3 +90,6 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/maven,java,windows,linux
 *.pdf
+
+.factorypath
+.settings/
