@@ -19,19 +19,9 @@ public class FirstComeFirstServe implements AlgorithmImplementation {
     int time = 0;
     while (!processes.isEmpty()) {
       sortProcesses();
-      Process process = processes.getFirst();
-      if (time < process.getArrivalTime()) {
-        time = process.getArrivalTime();
-      }
-      try {
-        Thread.sleep(process.getBurstTime());
-      } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-        System.out.println("Process " + process.getId() + " was interrupted.");
-        return;
-      }
-      time += process.getBurstTime();
-      System.out.println("Process " + process.getId() + " finished at " + time);
+      Process currentProcess = processes.getFirst();
+      time += currentProcess.run();
+      System.out.println("Process " + currentProcess.getId() + " finished at " + time);
       processes.removeFirst();
     }
   }

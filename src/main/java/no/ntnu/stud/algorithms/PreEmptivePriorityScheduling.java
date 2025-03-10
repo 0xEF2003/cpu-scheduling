@@ -25,17 +25,7 @@ public class PreEmptivePriorityScheduling
     while (!processes.isEmpty()) {
       sortProcesses();
       Process currentProcess = processes.getFirst();
-      if (time < currentProcess.getArrivalTime()) {
-        time = currentProcess.getArrivalTime();
-      }
-      try {
-        Thread.sleep(currentProcess.getBurstTime());
-      } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-        System.out.println("Process " + currentProcess.getId() + " was interrupted.");
-        return;
-      }
-      time += currentProcess.getBurstTime();
+      time += currentProcess.run();
       System.out.println("Process " + currentProcess.getId() + " finished at " + time);
       processes.removeFirst();
     }
