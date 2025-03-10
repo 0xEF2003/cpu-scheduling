@@ -13,10 +13,7 @@ public class ProcessView extends ProcessEventListener {
 
   public ProcessView(int processID, int burstTime) {
     this.burstTime = burstTime;
-    ProgressBarBuilder progressBarBuilder =
-        new ProgressBarBuilder().setInitialMax(burstTime)
-            .setTaskName("Process " + processID);
-    this.progressBar = progressBarBuilder.build();
+    this.progressBar = new ProgressBar("Process" + processID, burstTime);
   }
 
   public void update(ProcessEventEnum event, Process process) {
