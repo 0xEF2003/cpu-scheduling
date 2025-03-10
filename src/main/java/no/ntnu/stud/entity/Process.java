@@ -1,6 +1,5 @@
 package no.ntnu.stud.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import no.ntnu.stud.enums.ProcessEventEnum;
@@ -40,12 +39,12 @@ public class Process {
   }
 
   public int burst() {
-    while (progressTime != burstTime) {
+    while (this.progressTime < this.burstTime) {
       try {
-        Thread.sleep(1);
-        progressTime++;
-        if (publisher != null) {
-            publisher.notify(ProcessEventEnum.PROGRESS_TIME_UPDATED, this);
+        Thread.sleep(5);
+        this.progressTime += 5;
+        if (this.publisher != null) {
+            this.publisher.notify(ProcessEventEnum.PROGRESS_TIME_UPDATED, this);
         }
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
