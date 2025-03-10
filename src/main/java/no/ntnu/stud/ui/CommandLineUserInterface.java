@@ -2,6 +2,7 @@ package no.ntnu.stud.ui;
 
 import java.util.List;
 import java.util.Scanner;
+import no.ntnu.stud.exceptions.StringPresentException;
 
 public class CommandLineUserInterface {
 
@@ -32,7 +33,7 @@ public class CommandLineUserInterface {
     return input;
   }
 
-    
+
   /**
    * Returns integer from user input.
    *
@@ -61,7 +62,7 @@ public class CommandLineUserInterface {
    * Type agnostic option selector. Prints all options (auto-indexed) to standard output. Then it
    * asks for index and returns the option corresponding to user input. Yells if bad input.
    *
-   * @param <T> The type of option
+   * @param <T>     The type of option
    * @param command The prompt to the user
    * @param options The options the user can choose from
    * @return The selected option
@@ -78,8 +79,12 @@ public class CommandLineUserInterface {
       // Print selectable options
       for (int i = 0; i < numOptions; i++) {
         int opt = i + 1;
-        String text = options.get(i).present();
-        System.out.println("[" + opt + "] " + text);
+        try {
+          String text = options.get(i).present();
+          System.out.println("[" + opt + "] " + text);
+        } catch (StringPresentException e) {
+          continue;
+        }
       }
 
       // Prompt and process input
@@ -96,7 +101,6 @@ public class CommandLineUserInterface {
 
     return option;
   }
-
 
 
 }

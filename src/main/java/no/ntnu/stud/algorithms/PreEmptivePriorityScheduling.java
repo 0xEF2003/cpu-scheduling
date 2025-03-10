@@ -11,7 +11,7 @@ import no.ntnu.stud.entity.Process;
 public class PreEmptivePriorityScheduling
     extends AlgorithmImplementation {
   private List<Process> processes;
-  
+
   public void setProcesses(List<Process> processes) {
     this.processes = processes;
   }
@@ -30,8 +30,10 @@ public class PreEmptivePriorityScheduling
     while (!processes.isEmpty()) {
       sortProcesses();
       Process currentProcess = processes.getFirst();
-      time += currentProcess.run();
-      System.out.println("Process " + currentProcess.getId() + " finished at " + time);
+      time += currentProcess.burst();
+      System.out.println(
+          "Process " + currentProcess.getId() + " finished at " + time + " with priority " +
+              currentProcess.getPriority());
       processes.removeFirst();
     }
   }

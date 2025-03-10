@@ -25,7 +25,7 @@ public class FirstComeFirstServe extends AlgorithmImplementation {
     while (!processes.isEmpty()) {
       sortProcesses();
       Process currentProcess = processes.getFirst();
-      time += currentProcess.run();
+      time += currentProcess.burst();
       System.out.println("Process " + currentProcess.getId() + " finished at " + time);
       processes.removeFirst();
     }
