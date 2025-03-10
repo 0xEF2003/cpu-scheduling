@@ -21,6 +21,7 @@ public class Process {
 
   private int id;
   private int arrivalTime;
+  private int progressTime;
   private int burstTime;
   private int priority;
 
@@ -35,17 +36,17 @@ public class Process {
   }
 
   public int run() {
-    int time = 0;
-    while (time != burstTime) {
+    int progressTime = 0;
+    while (progressTime != burstTime) {
       try {
         Thread.sleep(1);
-        time++;
+        progressTime++;
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
-        System.out.println("Process " + id + " was interrupted.");
-        return time;
+        System.out.println(
+            "Process " + id + " was interrupted. Progress: " + progressTime + "/" + burstTime);
       }
     }
-    return time;
+    return progressTime;
   }
 }
