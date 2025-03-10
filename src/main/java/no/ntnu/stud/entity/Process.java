@@ -25,16 +25,6 @@ public class Process {
   private int burstTime;
   private int priority;
 
-  @Override
-  public String toString() {
-    return "Process{" +
-        "id=" + id +
-        ", arrivalTime=" + arrivalTime +
-        ", burstTime=" + burstTime +
-        ", priority=" + priority +
-        '}';
-  }
-
   public int run() {
     int progressTime = 0;
     while (progressTime != burstTime) {
