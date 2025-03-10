@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import no.ntnu.stud.algorithms.AlgorithmImplementation;
+import no.ntnu.stud.algorithms.RoundRobin;
 import no.ntnu.stud.factory.ProcessEventPublisherFactory;
 import no.ntnu.stud.entity.Process;
 import no.ntnu.stud.enums.AlgorithmEnum;
@@ -50,10 +51,18 @@ public class App {
           .collect(Collectors.toList());
 
       // User selects one of the available algorithms
-      AlgorithmView userSelection =
-          cli.promptIndexedOptions("Please select algorithm", algorithmViews);
+      AlgorithmEnum selectedAlgorithm = cli
+          .promptIndexedOptions("Please select algorithm", algorithmViews)
+          .getAlgorithm();
       AlgorithmImplementation algorithm =
-          AlgorithmImplementationFactory.create(userSelection.getAlgorithm());
+          AlgorithmImplementationFactory.create(selectedAlgorithm);
+
+      // User specifies quantum when simulating round robin
+      if (selectedAlgorithm == AlgorithmEnum.ROUND_ROBIN) {
+        int quantum = cli.promptInt("Please specify quantum time");
+        RoundRobin rr = (RoundRobin)algorithm;
+        rr.setQuantum(quantum);
+      }
 
       // User enters how many processes to spawn and max burst time
       int numberOfProcesses = cli.promptInt("Please enter amount of processes to schedule");

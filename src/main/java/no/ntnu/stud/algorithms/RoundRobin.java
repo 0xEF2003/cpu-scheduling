@@ -7,12 +7,11 @@ import lombok.NoArgsConstructor;
 import no.ntnu.stud.entity.Process;
 
 @NoArgsConstructor
-@AllArgsConstructor
 public class RoundRobin extends AlgorithmImplementation {
   List<Process> processes;
   int quantum;
 
-  public RoundRobin(int quantum) {
+  public void setQuantum(int quantum) {
     this.quantum = quantum;
   }
 
