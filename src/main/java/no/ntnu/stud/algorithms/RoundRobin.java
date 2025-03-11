@@ -21,6 +21,7 @@ public class RoundRobin extends AlgorithmImplementation {
     int sumWaitingTime = 0;
     int numberOfProcesses = super.getProcesses().size();
     int sumBurstTime = 0;
+    int time = 0;
 
     // Keep track of total burst time
     for (Process process : super.getProcesses()) {
@@ -32,11 +33,12 @@ public class RoundRobin extends AlgorithmImplementation {
       Iterator<Process> iterator = super.getProcesses().iterator();
       while (iterator.hasNext()) {
         Process currentProcess = iterator.next();
-        int time = currentProcess.burst(this.quantum);
-        currentProcess.setWaitingTime(currentProcess.getWaitingTime() + time);
+        int burstTime = currentProcess.burst(quantum);
+        time += burstTime;
+        currentProcess.setWaitingTime(time);
         if (currentProcess.getProgressTime() >= currentProcess.getBurstTime()) {
           iterator.remove();
-          sumWaitingTime += time * super.getProcesses().size();
+          sumWaitingTime += currentProcess.getWaitingTime();
         }
       }
     }
