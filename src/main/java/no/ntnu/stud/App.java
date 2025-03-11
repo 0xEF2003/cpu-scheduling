@@ -87,10 +87,9 @@ public class App {
         i++;
       }
 
-      // Run simulation
-      algorithm.setProcesses(processes);
-      SimulationResult result = algorithm.run();
-
+      // Create and Run simulation
+      Simulation simulation = new Simulation(algorithm, processes);
+      SimulationResult result = simulation.run();
       SimulationResultView resultView = new SimulationResultView(result);
       System.out.println(resultView.present());
     }

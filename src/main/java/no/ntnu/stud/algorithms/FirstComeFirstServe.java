@@ -2,14 +2,16 @@ package no.ntnu.stud.algorithms;
 
 import java.util.Comparator;
 import java.util.List;
-import java.lang.Integer;
 
 import no.ntnu.stud.entity.Process;
-import no.ntnu.stud.entity.SimulationResult;
 
-public class FirstComeFirstServe extends AlgorithmImplementation {
+public class FirstComeFirstServe extends ProcessByProcessAlgorithm {
 
-  public FirstComeFirstServe() {
+  @Override
+  public List<Process> sortProcesses(List<Process> processes) {
+    processes.sort(Comparator.comparingInt(Process::getArrivalTime));
+    return processes;
   }
+
 
 }

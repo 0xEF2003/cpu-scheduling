@@ -2,17 +2,15 @@ package no.ntnu.stud.algorithms;
 
 import java.util.Comparator;
 import java.util.List;
+
 import no.ntnu.stud.entity.Process;
-import no.ntnu.stud.entity.SimulationResult;
 
-public class ShortestJobFirst extends AlgorithmImplementation {
-
-  public ShortestJobFirst() {
-  }
+public class ShortestJobFirst extends ProcessByProcessAlgorithm {
 
   @Override
-  public void sortProcesses() {
-    super.getProcesses().sort(Comparator.comparingInt(Process::getBurstTime));
+  public List<Process> sortProcesses(List<Process> processes) {
+    processes.sort(Comparator.comparingInt(Process::getBurstTime));
+    return processes;
   }
 
 }

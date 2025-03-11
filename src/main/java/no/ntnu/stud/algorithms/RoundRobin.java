@@ -17,36 +17,36 @@ public class RoundRobin extends AlgorithmImplementation {
   }
 
   @Override
-  public SimulationResult run() {
+  public List<Process> sortProcesses(List<Process> processes) {
+    processes.sort(Comparator.comparingInt(Process::getArrivalTime));
+    return processes;
+  }
+
+  @Override
+  public int algorithm(List<Process> processes) {
+    int processesLeft = processes.size();
     int sumWaitingTime = 0;
-    int numberOfProcesses = super.getProcesses().size();
-    int sumBurstTime = 0;
-    int time = 0;
+    while (!processes.isEmpty()) {
+      processes = sortProcesses(processes);
 
-    // Keep track of total burst time
-    for (Process process : super.getProcesses()) {
-      sumBurstTime += process.getBurstTime();
-    }
+      int i = 0;
+      while (i < processesLeft) {
+        // accumulate counters
+        Process process = processes.get(i);
+        int time = process.burst(quantum);
+        sumWaitingTime += quantum * (processesLeft - 1);
 
-    while (!super.getProcesses().isEmpty()) {
-      sortProcesses();
-      Iterator<Process> iterator = super.getProcesses().iterator();
-      while (iterator.hasNext()) {
-        Process currentProcess = iterator.next();
-        int burstTime = currentProcess.burst(quantum);
-        time += burstTime;
-        currentProcess.setWaitingTime(time);
-        if (currentProcess.getProgressTime() >= currentProcess.getBurstTime()) {
-          iterator.remove();
-          sumWaitingTime += currentProcess.getWaitingTime();
+        // remove finished process
+        if (process.getProgressTime() >= process.getBurstTime()) {
+          processes.remove(process);
+          processesLeft--;
+          i--; // list is shrunk
         }
+
+        i++;
       }
     }
 
-    int averageWaitingTime = sumWaitingTime / numberOfProcesses;
-    int averageTurnAroundTime = averageWaitingTime + sumBurstTime / numberOfProcesses;
-    SimulationResult result = new SimulationResult(averageWaitingTime, averageTurnAroundTime);
-
-    return result;
+    return sumWaitingTime;
   }
 }

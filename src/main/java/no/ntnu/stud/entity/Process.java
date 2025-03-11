@@ -73,20 +73,7 @@ public class Process {
   }
 
   public int burst() {
-    while (this.progressTime < this.burstTime) {
-      try {
-        Thread.sleep(1);
-        this.progressTime += 1;
-        if (this.publisher != null) {
-          this.publisher.notify(ProcessEventEnum.PROGRESS_TIME_UPDATED, this);
-        }
-      } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-        System.out.println(
-            "Process " + id + " was interrupted. Progress: " + progressTime + "/" + burstTime);
-      }
-    }
-    return progressTime;
+    return this.burst(this.burstTime);
   }
 
   public int burst(int quantum) {
