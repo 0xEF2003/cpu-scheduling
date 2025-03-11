@@ -1,12 +1,10 @@
 package no.ntnu.stud.algorithms;
 
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 import no.ntnu.stud.entity.Process;
-import no.ntnu.stud.entity.SimulationResult;
 
-public class RoundRobin extends AlgorithmImplementation {
+public class RoundRobin extends Algorithm {
   int quantum;
 
   public RoundRobin() {

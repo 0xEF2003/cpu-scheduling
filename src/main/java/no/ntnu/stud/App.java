@@ -1,18 +1,17 @@
 package no.ntnu.stud;
 
 import no.ntnu.stud.entity.SimulationResult;
-import no.ntnu.stud.factory.AlgorithmImplementationFactory;
+import no.ntnu.stud.factory.AlgorithmFactory;
 import no.ntnu.stud.ui.CommandLineUserInterface;
 import no.ntnu.stud.views.AlgorithmView;
 import no.ntnu.stud.views.ProcessView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import no.ntnu.stud.algorithms.AlgorithmImplementation;
+import no.ntnu.stud.algorithms.Algorithm;
 import no.ntnu.stud.algorithms.RoundRobin;
 import no.ntnu.stud.factory.ProcessEventPublisherFactory;
 import no.ntnu.stud.entity.Process;
@@ -56,8 +55,8 @@ public class App {
       AlgorithmEnum selectedAlgorithm = cli
           .promptIndexedOptions("Please select algorithm", algorithmViews)
           .getAlgorithm();
-      AlgorithmImplementation algorithm =
-          AlgorithmImplementationFactory.create(selectedAlgorithm);
+      Algorithm algorithm =
+          AlgorithmFactory.create(selectedAlgorithm);
 
       // User specifies quantum when simulating round robin
       if (selectedAlgorithm == AlgorithmEnum.ROUND_ROBIN) {

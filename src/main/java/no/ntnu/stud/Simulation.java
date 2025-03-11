@@ -2,13 +2,13 @@ package no.ntnu.stud;
 
 import java.util.List;
 
-import no.ntnu.stud.algorithms.AlgorithmImplementation;
+import no.ntnu.stud.algorithms.Algorithm;
 import no.ntnu.stud.entity.Process;
 import no.ntnu.stud.entity.SimulationResult;
 
 public class Simulation {
 
-  private AlgorithmImplementation algorithm;
+  private Algorithm algorithm;
   private List<Process> processes;
 
   public void setProcesses(List<Process> processes) {
@@ -19,7 +19,7 @@ public class Simulation {
     return processes;
   }
 
-  public Simulation(AlgorithmImplementation algorithm, List<Process> processes) {
+  public Simulation(Algorithm algorithm, List<Process> processes) {
     this.algorithm = algorithm;
     this.processes = processes;
   }
