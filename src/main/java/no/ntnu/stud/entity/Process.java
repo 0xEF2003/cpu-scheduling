@@ -21,6 +21,7 @@ public class Process {
 
   private int id;
   private int arrivalTime;
+  private int waitingTime;
   private int progressTime;
   private int burstTime;
   private int priority;

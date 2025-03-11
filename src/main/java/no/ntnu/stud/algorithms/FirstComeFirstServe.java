@@ -22,12 +22,21 @@ public class FirstComeFirstServe extends AlgorithmImplementation {
 
   public void run() {
     int time = 0;
+    int numberOfProcesses = processes.size();
     while (!processes.isEmpty()) {
       sortProcesses();
       Process currentProcess = processes.getFirst();
       time += currentProcess.burst();
       System.out.println("Process " + currentProcess.getId() + " finished at " + time);
       processes.removeFirst();
+      final int additionalWaitingTime = time;
+      processes.stream().forEach(
+        p -> p.setWaitingTime(p.getWaitingTime() + additionalWaitingTime)
+      );
     }
+    int averageWaitingTime = processes.stream()
+      .mapToInt(p -> p.getWaitingTime())
+      .sum() / numberOfProcesses;
+    System.out.println("Average waiting time: " + averageWaitingTime);
   }
 }
