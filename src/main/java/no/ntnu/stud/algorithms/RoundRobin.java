@@ -7,7 +7,6 @@ import no.ntnu.stud.entity.Process;
 import no.ntnu.stud.entity.SimulationResult;
 
 public class RoundRobin extends AlgorithmImplementation {
-  List<Process> processes;
   int quantum;
 
   public RoundRobin() {
@@ -17,35 +16,27 @@ public class RoundRobin extends AlgorithmImplementation {
     this.quantum = quantum;
   }
 
-  public void setProcesses(List<Process> processes) {
-    this.processes = processes;
-  }
-
-  public void sortProcesses() {
-    processes.sort(Comparator.comparingInt(Process::getArrivalTime));
-  }
-
   @Override
   public SimulationResult run() {
     int sumWaitingTime = 0;
-    int numberOfProcesses = processes.size();
+    int numberOfProcesses = super.getProcesses().size();
     int sumBurstTime = 0;
 
     // Keep track of total burst time
-    for (Process process : processes) {
+    for (Process process : super.getProcesses()) {
       sumBurstTime += process.getBurstTime();
     }
 
-    while (!processes.isEmpty()) {
+    while (!super.getProcesses().isEmpty()) {
       sortProcesses();
-      Iterator<Process> iterator = processes.iterator();
+      Iterator<Process> iterator = super.getProcesses().iterator();
       while (iterator.hasNext()) {
         Process currentProcess = iterator.next();
         int time = currentProcess.burst(this.quantum);
         currentProcess.setWaitingTime(currentProcess.getWaitingTime() + time);
         if (currentProcess.getProgressTime() >= currentProcess.getBurstTime()) {
           iterator.remove();
-          sumWaitingTime += time * processes.size();
+          sumWaitingTime += time * super.getProcesses().size();
         }
       }
     }
