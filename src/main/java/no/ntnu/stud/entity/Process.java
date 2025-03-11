@@ -1,12 +1,8 @@
 package no.ntnu.stud.entity;
 
-import lombok.Getter;
-import lombok.Setter;
 import no.ntnu.stud.enums.ProcessEventEnum;
 import no.ntnu.stud.publisher.ProcessEventPublisher;
 
-@Getter
-@Setter
 /**
  * Process entity
  *
@@ -30,9 +26,46 @@ public class Process {
   public Process(int id, int arrivalTime, int burstTime, int priority) {
     this.id = id;
     this.arrivalTime = arrivalTime;
+    this.waitingTime = 0;
     this.progressTime = 0;
     this.burstTime = burstTime;
     this.priority = priority;
+  }
+
+  public int getId() {
+    return this.id;
+  }
+
+  public int getArrivalTime() {
+    return this.arrivalTime;
+  }
+
+  public int getWaitingTime() {
+    return this.waitingTime;
+  }
+
+  public void setWaitingTime(int newWaitingTime) {
+    if (newWaitingTime < 0) {
+        throw new IllegalArgumentException("newWaitingTime must be positive");
+    }
+
+    if (newWaitingTime < this.waitingTime) {
+        throw new IllegalArgumentException("newWaitingTime must be greater than current waitingTime");
+    }
+
+    this.waitingTime = newWaitingTime;
+  }
+
+  public int getProgressTime() {
+    return this.progressTime;
+  }
+
+  public int getBurstTime() {
+    return this.burstTime;
+  }
+
+  public int getPriority() {
+    return this.priority;
   }
 
   public void setEventPublisher(ProcessEventPublisher publisher) {
