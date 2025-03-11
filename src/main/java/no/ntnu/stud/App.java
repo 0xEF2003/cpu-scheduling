@@ -1,5 +1,6 @@
 package no.ntnu.stud;
 
+import no.ntnu.stud.entity.SimulationResult;
 import no.ntnu.stud.factory.AlgorithmImplementationFactory;
 import no.ntnu.stud.ui.CommandLineUserInterface;
 import no.ntnu.stud.views.AlgorithmView;
@@ -19,6 +20,7 @@ import no.ntnu.stud.enums.AlgorithmEnum;
 import no.ntnu.stud.enums.ProcessEventEnum;
 import no.ntnu.stud.factory.ProcessFactory;
 import no.ntnu.stud.publisher.ProcessEventPublisher;
+import no.ntnu.stud.views.SimulationResultView;
 
 /**
  * Hello world!
@@ -60,7 +62,7 @@ public class App {
       // User specifies quantum when simulating round robin
       if (selectedAlgorithm == AlgorithmEnum.ROUND_ROBIN) {
         int quantum = cli.promptInt("Please specify quantum time");
-        RoundRobin rr = (RoundRobin)algorithm;
+        RoundRobin rr = (RoundRobin) algorithm;
         rr.setQuantum(quantum);
       }
 
@@ -87,7 +89,10 @@ public class App {
 
       // Run simulation
       algorithm.setProcesses(processes);
-      algorithm.run();
+      SimulationResult result = algorithm.run();
+
+      SimulationResultView resultView = new SimulationResultView(result);
+      System.out.println(resultView.present());
     }
   }
 
