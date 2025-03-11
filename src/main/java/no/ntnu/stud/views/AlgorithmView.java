@@ -1,6 +1,6 @@
 package no.ntnu.stud.views;
 
-import no.ntnu.stud.ui.Presentable;
+import no.ntnu.stud.interfaces.Presentable;
 import no.ntnu.stud.enums.AlgorithmEnum;
 import no.ntnu.stud.exceptions.StringPresentException;
 

@@ -4,6 +4,7 @@ import no.ntnu.stud.entity.SimulationResult;
 import no.ntnu.stud.factory.AlgorithmFactory;
 import no.ntnu.stud.ui.CommandLineUserInterface;
 import no.ntnu.stud.views.AlgorithmView;
+import no.ntnu.stud.views.AsciiArtView;
 import no.ntnu.stud.views.ProcessView;
 
 import java.util.ArrayList;
@@ -27,15 +28,17 @@ import no.ntnu.stud.views.SimulationResultView;
 public class App {
   private boolean running;
   private CommandLineUserInterface cli;
+  private AsciiArtView artView;
 
   public App() {
     this.cli = new CommandLineUserInterface();
+    this.artView = new AsciiArtView();
   }
 
   public void start() {
-    cli.greet();
+    artView.greet();
     this.mainLoop();
-    cli.goodbye();
+    artView.goodbye();
   }
 
   private void mainLoop() {

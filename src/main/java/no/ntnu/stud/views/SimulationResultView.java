@@ -3,7 +3,7 @@ package no.ntnu.stud.views;
 import java.text.MessageFormat;
 
 import no.ntnu.stud.entity.SimulationResult;
-import no.ntnu.stud.ui.Presentable;
+import no.ntnu.stud.interfaces.Presentable;
 
 public class SimulationResultView implements Presentable {
     private SimulationResult result;

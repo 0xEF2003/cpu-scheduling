@@ -3,25 +3,9 @@ package no.ntnu.stud.ui;
 import java.util.List;
 import java.util.Scanner;
 import no.ntnu.stud.exceptions.StringPresentException;
+import no.ntnu.stud.interfaces.Presentable;
 
 public class CommandLineUserInterface {
-
-  public void greet() {
-    System.out.print("""
-  ____ ____  _   _ ____       _              _       _
- / ___|  _ \\| | | / ___|  ___| |__   ___  __| |_   _| | ___ _ __
-| |   | |_) | | | \\___ \\ / __| '_ \\ / _ \\/ _` | | | | |/ _ | '__|
-| |___|  __/| |_|  ___) | (__| | | |  __| (_| | |_| | |  __| |
- \\____|_|    \\___/|____/ \\___|_| |_|\\___|\\__,_|\\__,_|_|\\___|_|
-
-    """);
-    System.out.println("The Epic Process Simulator");
-  }
-
-
-  public void goodbye() {
-    System.out.println("Have a nice day!");
-  }
 
   /**
    * Prompt any single line input.

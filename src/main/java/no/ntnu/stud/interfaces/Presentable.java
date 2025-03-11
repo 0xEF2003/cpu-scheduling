@@ -1,4 +1,4 @@
-package no.ntnu.stud.ui;
+package no.ntnu.stud.interfaces;
 
 import no.ntnu.stud.exceptions.StringPresentException;
 
