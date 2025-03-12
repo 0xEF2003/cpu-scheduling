@@ -82,7 +82,7 @@ public class App {
       while (i < numberOfProcesses) {
         Process process = processes.get(i);
         ProcessEventPublisher publisher = eventPublishers.get(i);
-        ProcessView view = new ProcessView(process.getId(), process.getBurstTime());
+        ProcessView view = new ProcessView(process);
         process.setEventPublisher(publisher);
         publisher.subscribe(ProcessEventEnum.PROGRESS_TIME_UPDATED, view);
         processViews.add(view);
