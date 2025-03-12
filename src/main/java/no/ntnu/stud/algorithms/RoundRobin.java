@@ -24,6 +24,12 @@ public class RoundRobin extends Algorithm {
   public int algorithm(List<Process> processes) {
     int processesLeft = processes.size();
     int sumWaitingTime = 0;
+    int timeToRemove = 0;
+
+    for (Process process : processes) {
+      timeToRemove -= process.getArrivalTime();
+    }
+
     while (!processes.isEmpty()) {
       processes = sortProcesses(processes);
 
@@ -45,6 +51,6 @@ public class RoundRobin extends Algorithm {
       }
     }
 
-    return sumWaitingTime;
+    return sumWaitingTime + timeToRemove;
   }
 }
