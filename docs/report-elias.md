@@ -21,3 +21,4 @@ I believe the contributions looks skewed because I decided to go nuts on abstrac
 * Implemented calculations for average waiting time and average turn around time
 * Generally refactored much code to attempt maintaining high cohesion and low coupling
 * Added ASCII Art ;)
+* Made video
