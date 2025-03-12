@@ -2,7 +2,7 @@ package no.ntnu.stud.factory;
 
 import no.ntnu.stud.algorithms.Algorithm;
 import no.ntnu.stud.algorithms.FirstComeFirstServe;
-import no.ntnu.stud.algorithms.PreEmptivePriorityScheduling;
+import no.ntnu.stud.algorithms.NonPreEmptivePriorityScheduling;
 import no.ntnu.stud.algorithms.RoundRobin;
 import no.ntnu.stud.algorithms.ShortestJobFirst;
 import no.ntnu.stud.enums.AlgorithmEnum;
@@ -14,7 +14,7 @@ public class AlgorithmFactory {
         return new FirstComeFirstServe();
       }
       case PRIORITY -> {
-        return new PreEmptivePriorityScheduling();
+        return new NonPreEmptivePriorityScheduling();
       }
       case SJF -> {
         return new ShortestJobFirst();

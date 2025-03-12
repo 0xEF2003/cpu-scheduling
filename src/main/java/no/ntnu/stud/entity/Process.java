@@ -10,7 +10,6 @@ import no.ntnu.stud.publisher.ProcessEventPublisher;
  * @param arrivalTime process arrival time (In ms)
  * @param burstTime   process burst time (In ms)
  * @param priority    process priority (Higher number means higher priority)
- *
  * @return Process object
  */
 public class Process {
@@ -46,11 +45,11 @@ public class Process {
 
   public void setWaitingTime(int newWaitingTime) {
     if (newWaitingTime < 0) {
-        throw new IllegalArgumentException("newWaitingTime must be positive");
+      throw new IllegalArgumentException("newWaitingTime must be positive");
     }
 
     if (newWaitingTime < this.waitingTime) {
-        throw new IllegalArgumentException("newWaitingTime must be greater than current waitingTime");
+      throw new IllegalArgumentException("newWaitingTime must be greater than current waitingTime");
     }
 
     this.waitingTime = newWaitingTime;
@@ -78,7 +77,7 @@ public class Process {
 
   public int burst(int quantum) {
     int time = 0;
-    while (this.progressTime < this.burstTime && time < quantum) {
+    while (this.progressTime <= this.burstTime && time <= quantum) {
       try {
         Thread.sleep(1);
         this.progressTime += 1;

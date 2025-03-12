@@ -4,7 +4,7 @@ import java.util.List;
 
 import no.ntnu.stud.entity.Process;
 
-public class PreEmptivePriorityScheduling extends ProcessByProcessAlgorithm {
+public class NonPreEmptivePriorityScheduling extends ProcessByProcessAlgorithm {
 
   @Override
   public List<Process> sortProcesses(List<Process> processes) {
