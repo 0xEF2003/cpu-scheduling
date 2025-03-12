@@ -29,9 +29,6 @@ public class Process {
     this.progressTime = 0;
     this.burstTime = burstTime;
     this.priority = priority;
-    System.out.println(
-        "Process " + id + " created with arrival time " + arrivalTime + "ms, burst time " +
-            burstTime + "ms, and priority " + priority);
   }
 
   public int getId() {
