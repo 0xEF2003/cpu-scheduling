@@ -77,7 +77,7 @@ public class Process {
 
   public int burst(int quantum) {
     int time = 0;
-    while (this.progressTime <= this.burstTime && time <= quantum) {
+    while (this.progressTime < this.burstTime && time < quantum) {
       try {
         Thread.sleep(1);
         this.progressTime += 1;
