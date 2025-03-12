@@ -5,10 +5,16 @@ import java.util.List;
 import no.ntnu.stud.entity.Process;
 
 public abstract class ProcessByProcessAlgorithm extends Algorithm {
-    
+
   @Override
   public int algorithm(List<Process> processes) {
     int sumWaitingTime = 0;
+    int timeToRemove = 0;
+
+    for (Process process : processes) {
+      timeToRemove -= process.getArrivalTime();
+    }
+
     while (!processes.isEmpty()) {
       processes = sortProcesses(processes);
 
@@ -19,7 +25,7 @@ public abstract class ProcessByProcessAlgorithm extends Algorithm {
       // accumulate waiting time for all other processes
       sumWaitingTime += time * processes.size();
     }
-    return sumWaitingTime;
-   }
+    return sumWaitingTime + timeToRemove;
+  }
 
 }
