@@ -16,6 +16,9 @@ public class AlgorithmView implements Presentable {
       case FIRST_COME_FIRST_SERVE -> {
         return "First Come First Serve";
       }
+      case NON_PREEMPTIVE_PRIORITY -> {
+        return "Non Pre-emptive Priority Scheduling";
+      }
       case PRIORITY -> {
         return "Pre-emptive Priority Scheduling";
       }
@@ -25,6 +28,7 @@ public class AlgorithmView implements Presentable {
       case ROUND_ROBIN -> {
         return "Round Robin";
       }
+
       default -> {
         throw new StringPresentException("Failed to present algorithm type: not known");
       }

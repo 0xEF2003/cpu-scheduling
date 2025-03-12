@@ -29,6 +29,9 @@ public class Process {
     this.progressTime = 0;
     this.burstTime = burstTime;
     this.priority = priority;
+    System.out.println(
+        "Process " + id + " created with arrival time " + arrivalTime + "ms, burst time " +
+            burstTime + "ms, and priority " + priority);
   }
 
   public int getId() {
@@ -77,7 +80,7 @@ public class Process {
 
   public int burst(int quantum) {
     int time = 0;
-    while (this.progressTime <= this.burstTime && time <= quantum) {
+    while (this.progressTime < this.burstTime && time < quantum) {
       try {
         Thread.sleep(1);
         this.progressTime += 1;
